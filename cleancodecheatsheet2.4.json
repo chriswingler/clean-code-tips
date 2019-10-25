@@ -442,52 +442,6 @@
                 "type": "+"
             }
         },
-        "From Legacy Code to Clean Code": {
-            "Always have a Running System": {
-                "text": "Change your system in small steps, from a running state to a running state.  \n",
-                "type": "+"
-            },
-            "1) Identify Features": {
-                "text": "Identify the existing features in your code and prioritise them according to \nhow relevant they are for future development (likelihood and risk of \nchange). \n",
-                "type": "+"
-            },
-            "2) Introduce Boundary Interfaces for Testability": {
-                "text": "Refactor the boundaries of your system to interfaces so that you can \nsimulate the environment with test doubles (fakes, mocks, stubs). \n",
-                "type": "+"
-            },
-            "3) Write Feature Acceptance Tests": {
-                "text": "Cover a feature with Acceptance Tests to establish a safety net for \nrefactoring. \n",
-                "type": "+"
-            },
-            "4) Identify Components": {
-                "text": "Within a feature, identify the components used to provide the feature. \nPrioritise components according to relevance for future development \n(likelihood and risk of change). \n",
-                "type": "+"
-            },
-            "5) Refactor Interfaces between Components": {
-                "text": "Refactor (or introduce) interfaces between components so that each \ncomponent can be tested in isolation of its environment. \n",
-                "type": "+"
-            },
-            "6) Write Component Acceptance Tests": {
-                "text": "Cover the features provided by a component with Acceptance Tests. \n  \n",
-                "type": "+"
-            },
-            "8a) Refactor Component": {
-                "text": "Redesign classes within the component and refactor step by step (see \nRefactoring Patters). Add unit tests for each newly designed class. \n",
-                "type": "+"
-            },
-            "8b) Reengineer Component": {
-                "text": "Use ATDD and TDD (see Clean ATDD/TDD cheat sheet) to re-implement the \ncomponent. \n",
-                "type": "+"
-            },
-            "8c) Keep Component": {
-                "text": "If you anticipate only few future changes to a component and the \ncomponent had few defects in the past, consider keeping it as it is. \n\n",
-                "type": "+"
-            },
-            "7) Decide for Each Component: \nRefactor, Reengineer, Keep": {
-                "text": "Decide for each component whether to refactor, reengineer or keep it. \n",
-                "type": "+"
-            }
-        },
         "Refactoring Patterns": {
             "Reconcile Differences - Unify Similar Code": {
                 "text": "Change both pieces of code stepwise until they are identical. Then extract. \n",
