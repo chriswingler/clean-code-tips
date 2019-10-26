@@ -11,20 +11,73 @@ const recurseThroughTree = (categories: any | { text: string, type: string }, ou
     const randomCategories: any = categories[randomCategoryName];
 
     if (i === 0) {
-      console.log(randomCategoryName, 'hey');
+
+      outputString += `${randomCategoryName} `;
 
       switch(randomCategoryName) {
         case "Principles":
-          outputString += `${randomCategoryName} `;
-          outputString += " 🗽 > ";
+          outputString += "🗽";
           break;
-        default:
-        console.log('ehyyyyyyyyyyyyyy');
-        outputString += `${randomCategoryName} > `;
-        break;
+        case "Smells":
+          outputString += "💩";
+          break;
+        case "Class Design":
+          outputString += "🧱";
+          break;
+        case "Package Cohesion":
+          outputString += "📦";
+          break;
+        case "Package Coupling":
+          outputString += "🧑‍🤝‍🧑";
+          break;
+        case "General":
+          outputString += "📖";
+          break;
+        case "Environment":
+          outputString += "🌎";
+          break;
+        case "Dependency Injection":
+          outputString += "💉";
+          break;
+        case "Design":
+          outputString += "✍";
+          break;
+        case "Dependencies":
+          outputString += "👨‍👧‍👦";
+          break;
+        case "Naming":
+          outputString += "🏷";
+          break;
+        case "Understandability":
+          outputString += "📖";
+          break;
+        case "Methods":
+          outputString += "🏃";
+          break;
+        case "Source Code Structure":
+          outputString += "🏗";
+          break;
+        case "Conditionals":
+          outputString += "👈👉";
+          break;
+        case "Useless Stuff":
+          outputString += "🗑";
+          break;
+        case "Maintainability Killers":
+          outputString += "🔧";
+          break;
+        case "Exception Handling":
+          outputString += "🚸";
+          break;
+        case "How to Learn Clean Code":
+          outputString += "👨‍🏫";
+          break;
+        case "Refactoring Patterns":
+          outputString += "🔨";
+          break;
       }
     } else {
-      outputString += `${randomCategoryName} > `;
+      outputString += ` > ${randomCategoryName} > `;
     }
 
     i = i + 1;
