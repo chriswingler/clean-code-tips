@@ -1,22 +1,20 @@
-# CleanCodeCheatSheetJson
-Easily parsable clean code cheat sheet V 2.4. Based on the work of Urs Enzler.
+# Displays a clean code tip each time you open VSCode to help us all become better engineers!
 
-The original data can be downloaded here:
+![Video of clean code tips popping up](../images/tips.gif "Tip popups!")
 
-https://www.planetgeek.ch/wp-content/uploads/2014/11/Clean-Code-V2.4.pdf
+## [- Chris Wingler](https://chriswingler.github.io/)
 
-The data is licensed under: https://creativecommons.org/licenses/by/4.0/
+## Github repository
+https://github.com/chriswingler/Clean-Code-Tips
 
-Format of data:
+## Recent changes
 
-```
- { pagenumber : {headers : 
-                    {subheaders : 
-                         {text : "the actual text of a cheat",
-                          type : "+ for postive (you should do this), - for negative (you should avoid this)"
-                          }
-                     }
-                 },
-   "license" : {containg license information}
- }
-```
+0.2.0: Updated README
+
+0.1.0: Initial
+
+## Attributions
+
+Tips written by Urs Enzler [here.](https://www.planetgeek.ch/wp-content/uploads/2014/11/Clean-Code-V2.4.pdf) (PDF)
+
+Data gathered by fritzmark [here.](https://github.com/fritzmark/CleanCodeCheatSheetJson)
