@@ -11,7 +11,6 @@
 - Add timer to settings page
 - Add testing tips
 - Language Translations
-- Support for other languages
 
 
 ## [Github repository](https://github.com/chriswingler/clean-code-tips)
