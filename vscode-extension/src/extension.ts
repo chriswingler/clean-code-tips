@@ -3,14 +3,82 @@ import * as cleanCodeTips from '../../cleancodecheatsheet2.4.json';
 
 type categories = { [key: string]: { [key: string]: { [key: string]: string } } };
 
-const recurseThroughTree = (categories: categories | { text: string, type: string }, outputString: string = '', i: number = 0): string => {
+const recurseThroughTree = (categories: any | { text: string, type: string }, outputString: string = '', i: number = 0): string => {
   if (i < 2) {
     const categoryKeys: Array<string> = Object.keys(categories);
     const randomCategoryIndex: number = categoryKeys.indexOf(categoryKeys[Math.floor(categoryKeys.length * Math.random())]);
     const randomCategoryName: string = categoryKeys[randomCategoryIndex];
     const randomCategories: any = categories[randomCategoryName];
 
-    outputString += `${randomCategoryName} > `;
+    if (i === 0) {
+
+      outputString += `${randomCategoryName} `;
+
+      switch(randomCategoryName) {
+        case "Principles":
+          outputString += "🗽";
+          break;
+        case "Smells":
+          outputString += "💩";
+          break;
+        case "Class Design":
+          outputString += "🧱";
+          break;
+        case "Package Cohesion":
+          outputString += "📦";
+          break;
+        case "Package Coupling":
+          outputString += "🧑‍🤝‍🧑";
+          break;
+        case "General":
+          outputString += "📖";
+          break;
+        case "Environment":
+          outputString += "🌎";
+          break;
+        case "Dependency Injection":
+          outputString += "💉";
+          break;
+        case "Design":
+          outputString += "✍";
+          break;
+        case "Dependencies":
+          outputString += "👨‍👧‍👦";
+          break;
+        case "Naming":
+          outputString += "🏷";
+          break;
+        case "Understandability":
+          outputString += "📖";
+          break;
+        case "Methods":
+          outputString += "🏃";
+          break;
+        case "Source Code Structure":
+          outputString += "🏗";
+          break;
+        case "Conditionals":
+          outputString += "👈👉";
+          break;
+        case "Useless Stuff":
+          outputString += "🗑";
+          break;
+        case "Maintainability Killers":
+          outputString += "🔧";
+          break;
+        case "Exception Handling":
+          outputString += "🚸";
+          break;
+        case "How to Learn Clean Code":
+          outputString += "👨‍🏫";
+          break;
+        case "Refactoring Patterns":
+          outputString += "🔨";
+          break;
+      }
+    } else {
+      outputString += ` > ${randomCategoryName} > `;
+    }
 
     i = i + 1;
 
@@ -23,7 +91,6 @@ const recurseThroughTree = (categories: categories | { text: string, type: strin
     }
 
     outputString += categories.text;
-    // console.log(outputString)
     return outputString;
   }
 };

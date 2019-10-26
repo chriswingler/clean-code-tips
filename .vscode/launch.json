@@ -9,7 +9,7 @@
 			"name": "Run VSCode Extension",
 			"type": "extensionHost",
 			"request": "launch",
-			"runtimeExecutable": "${execPath}",
+			"runtimeExecutable": "${execPath}/vscode-extension",
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}/vscode-extension"
 			],
@@ -22,7 +22,7 @@
 			"name": "VSCode Extension Tests",
 			"type": "extensionHost",
 			"request": "launch",
-			"runtimeExecutable": "${execPath}",
+			"runtimeExecutable": "${execPath}/vscode-extension",
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}/vscode-extension",
 				"--extensionTestsPath=${workspaceFolder}/vscode-extension/out/test/suite/index"
