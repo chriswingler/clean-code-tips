@@ -11,7 +11,7 @@
 		"Other"
 	],
 	"repository": {
-		"url": "https://github.com/chriswingler/Clean-Code-Tips"
+		"url": "https://github.com/chriswingler/clean-code-tips"
 	},
 	"icon": "images/logo.png",
 	"activationEvents": [
