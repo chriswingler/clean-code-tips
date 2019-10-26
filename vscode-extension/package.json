@@ -13,7 +13,7 @@
 	"repository": {
 		"url": "https://github.com/chriswingler/Clean-Code-Tips"
 	},
-	"icon": "../images/logo.png",
+	"icon": "images/logo.png",
 	"activationEvents": [
 		"*"
 	],

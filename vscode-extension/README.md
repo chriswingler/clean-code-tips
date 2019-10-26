@@ -1,6 +1,6 @@
 # Displays a clean code tip each time you open VSCode to help us all become better engineers!
 
-![Video of clean code tips popping up](../images/tips.gif "Tip popups!")
+![Video of clean code tips popping up](images/tips.gif "Tip popups!")
 
 ## [- Chris Wingler](https://chriswingler.github.io/)
 
