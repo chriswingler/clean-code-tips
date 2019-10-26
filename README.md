@@ -4,7 +4,7 @@
 
 ## Author
 
-[Chris Wingler](https://chriswingler.github.io/)
+- [Chris Wingler](https://chriswingler.github.io/)
 
 ## Planned features
 - Settings page
