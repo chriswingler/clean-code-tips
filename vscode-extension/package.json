@@ -10,10 +10,9 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.displayTip",
 		"*"
 	],
-	"main": "./out/vscode-extension/src/extension.js",
+	"main": "./out/clean-coding-tips/vscode-extension/src/extension.js",
 	"contributes": {
 		"commands": [
 			{
