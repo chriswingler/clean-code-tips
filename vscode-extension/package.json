@@ -12,7 +12,7 @@
 	"activationEvents": [
 		"*"
 	],
-	"main": "./out/clean-coding-tips/vscode-extension/src/extension.js",
+	"main": "./out/Clean-Coding-Tips/vscode-extension/src/extension.js",
 	"contributes": {
 		"commands": [
 			{

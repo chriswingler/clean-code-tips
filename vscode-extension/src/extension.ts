@@ -4,7 +4,6 @@ import * as cleanCodeTips from '../../cleancodecheatsheet2.4.json';
 type categories = { [key: string]: { [key: string]: { [key: string]: string } } };
 
 const recurseThroughTree = (categories: any | { text: string, type: string }, outputString: string = '', i: number = 0): string => {
-
   if (i < 2) {
     const categoryKeys: Array<string> = Object.keys(categories);
     const randomCategoryIndex: number = categoryKeys.indexOf(categoryKeys[Math.floor(categoryKeys.length * Math.random())]);
@@ -12,23 +11,25 @@ const recurseThroughTree = (categories: any | { text: string, type: string }, ou
     const randomCategories: any = categories[randomCategoryName];
 
     if (i === 0) {
-      console.log('outputString: ', outputString, 'randomCategoryName: ', randomCategoryName)
-      switch(outputString) {
-        // case "Principles":
-        //   outputString += `${randomCategoryName} > `;
-        //   outputString += " 🗽";
-        //   break;
-        default:
-          console.log('helloooo', outputString);
-          outputString += `${randomCategoryName} > `;
-          outputString += " 🗽";
+      console.log(randomCategoryName, 'hey');
+
+      switch(randomCategoryName) {
+        case "Principles":
+          outputString += `${randomCategoryName} `;
+          outputString += " 🗽 > ";
           break;
+        default:
+        console.log('ehyyyyyyyyyyyyyy');
+        outputString += `${randomCategoryName} > `;
+        break;
       }
     } else {
       outputString += `${randomCategoryName} > `;
     }
 
-    return recurseThroughTree(randomCategories, outputString, i++);
+    i = i + 1;
+
+    return recurseThroughTree(randomCategories, outputString, i);
   } else {
     if (categories.type === '-') {
       outputString += 'Bad: ';
@@ -37,7 +38,6 @@ const recurseThroughTree = (categories: any | { text: string, type: string }, ou
     }
 
     outputString += categories.text;
-    console.log(outputString)
     return outputString;
   }
 };
