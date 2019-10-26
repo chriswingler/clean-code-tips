@@ -122,12 +122,51 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 
   outputString = recurseThroughTree(rootDataObj);
 
-  // Display a message box to the user
+  // Display a message box to the user on startup
   vscode.window.showInformationMessage(
     outputString
     // 'Principles 🗽 > High Cohesion: Cohesion is the degree to which elements of a whole belong together. \nMethods and fields in a single class and classes of a component should have \nhigh cohesion. High cohesion in classes and components results in simpler, \nmore easily understandable code structure and design. \n'
   );
-
 	subscriptions.push(myStatusBarItem);
-	myStatusBarItem.show();
+  myStatusBarItem.show();
+  
+  // Add settings page
+  const testingToggle = vscode.workspace.getConfiguration().get('tipTime');
+	switch (testingToggle) {
+		case true:
+			break;
+		case false:
+			break;
+	}
+
+	const tipTime = vscode.workspace.getConfiguration().get('tipsForTestingCode');
+	switch (tipTime) {
+		case '5 minutes':
+			vscode.commands.executeCommand('workbench.explorer');
+			break;
+		case '10 minutes':
+			vscode.commands.executeCommand('workbench.search');
+			break;
+		case '15 minutes':
+			vscode.commands.executeCommand('workbench.scm');
+			break;
+		case '30 minutes':
+			vscode.commands.executeCommand('workbench.debug');
+			break;
+		case '1 hour':
+			vscode.commands.executeCommand('workbench.extensions');
+			break;
+		case '2 hours':
+			break;
+		case '4 hours':
+			break;
+		case '8 hours':
+			break;
+		case '1 day':
+			break;
+		case '1 week':
+			break;
+		case '1 month':
+			break;
+	}
 }

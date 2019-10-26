@@ -19,7 +19,44 @@
 	],
 	"main": "./out/Clean-Coding-Tips/vscode-extension/src/extension.js",
 	"contributes": {
+		"configuration":[
+			{
+				"title": "Clean Code Tips",
+				"properties": {
+				  "tipTime": {
+					"type": "string",
+					"enum": [
+					  "5 minutes",
+					  "10 minutes",
+					  "15 minutes",
+					  "30 minutes",
+					  "1 hour",
+					  "2 hours",
+					  "4 hours",
+					  "8 hours",
+					  "1 day",
+					  "1 week",
+					  "1 month"
+					],
+					"default": "5 minutes",
+					"description": "Time between tips while window open",
+					"scope": "window"
+				  },
+				  "tipsForTestingCode": {
+					"type": "boolean",
+					"enum": [
+						true,
+						false
+					],
+					"default": true,
+					"description": "Enabled?",
+					"scope": "window"
+				  }
+				}
+			  }
+		],
 		"commands": [
+			
 			{
 				"command": "extension.displayTip",
 				"title": "Display Tip"
