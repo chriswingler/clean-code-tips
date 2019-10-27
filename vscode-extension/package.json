@@ -3,7 +3,7 @@
   "displayName": "Clean Code Tips",
   "description": "Displays a clean code tip each time you open VSCode to help us all become better engineers!",
   "publisher": "chriswingler",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "engines": {
     "vscode": "^1.39.0"
   },
@@ -49,11 +49,11 @@
       {
         "command": "extension.displayTip",
         "title": "Display Tip"
-	  },
-	  {
-		  "command": "extension.config.configureTipTimer",
-		  "title": "Configure Clean Code Tip timer"
-	  }
+      },
+      {
+        "command": "extension.config.configureTipTimer",
+        "title": "Configure Clean Code Tip timer"
+      }
     ]
   },
   "scripts": {
