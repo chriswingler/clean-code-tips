@@ -92,12 +92,6 @@ const recurseThroughTree = (
 
     return recurseThroughTree(randomCategories, outputString, i);
   } else {
-    if (categories.type === '-') {
-      outputString += 'Bad: ';
-    } else {
-      outputString += 'Good: ';
-    }
-
     outputString += categories.text;
     return outputString;
   }
