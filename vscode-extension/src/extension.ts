@@ -107,12 +107,15 @@ const rootDataObj: categories = cleanCodeTips['Clean Code Cheat Sheet'];
 export function activate({ subscriptions }: vscode.ExtensionContext) {
   let outputString: string = '';
 
-  vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+  vscode.workspace.onDidChangeConfiguration(async (e: vscode.ConfigurationChangeEvent) => {
     if (e.affectsConfiguration('tipTimer')) {
-      console.log('heyehey');
+
+      // 1) Getting the value
+      const value = await vscode.workspace.getConfiguration().get('tipTimer');
+      await console.log(value);
+      
+      console.log('TIMESTAMP ' + Date.now());
     }
-    
-    // return e.affectsConfiguration('tipTimer') && console.log('heyeheyehy')
   });
 
   subscriptions.push(
@@ -126,10 +129,12 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
     vscode.commands.registerCommand('onCommand:config.configureTipTimer', () => {
       const updateConfigValues = async () => {
         const timer = vscode.workspace.getConfiguration('cleanCode.tipTimer');
-        await timer.update('tipTimer', "hey", vscode.ConfigurationTarget.Global);
+        await timer.update('tipTimer', "15 minutes", vscode.ConfigurationTarget.Global);
         
         const testingTips = vscode.workspace.getConfiguration('cleanCode.tipsForTestingCode');
-        await testingTips.update('tipsForTestingCode', "hey", vscode.ConfigurationTarget.Global);
+        await testingTips.update('tipsForTestingCode', false, vscode.ConfigurationTarget.Global);
+
+
       };
     
       updateConfigValues();
@@ -160,8 +165,6 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 
   // Add settings page
   const tipTimer = vscode.workspace.getConfiguration().get('tipTimer');
-
-  // subscriptions.push(tipTimer)
 
   switch (tipTimer) {
     case '5 minutes':
@@ -201,15 +204,15 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
       break;
   }
 
-  const testingToggle = vscode.workspace
-    .getConfiguration('tipsForTestingCode');
+//   const testingToggle = vscode.workspace
+//     .getConfiguration('tipsForTestingCode');
 
-  console.log(testingToggle);
+//   console.log(testingToggle);
 
-  switch (testingToggle) {
-    case true:
-      break;
-    case false:
-      break;
-  }
-}
+//   switch (testingToggle) {
+//     case true:
+//       break;
+//     case false:
+//       break;
+//   }
+// }
