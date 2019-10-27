@@ -103,132 +103,111 @@ const recurseThroughTree = (
   }
 };
 
-const rootDataObj: categories = cleanCodeTips['Clean Code Cheat Sheet'];
+const displayTip = () => {
+  const rootDataObj: categories = cleanCodeTips['Clean Code Cheat Sheet'];
 
-export function activate({ subscriptions }: vscode.ExtensionContext) {
-  let outputString: string = '';
+  const outputString = recurseThroughTree(rootDataObj);
+  vscode.window.showInformationMessage(outputString);
+};
 
-  const timer = () => {
-    const tipTimer = vscode.workspace.getConfiguration().get('tipTimer');
+let prevIntervalId: NodeJS.Timeout;
 
-      // Shorthand
-    const displayTip = (hours: number, minutes: number) => {
+const timer = () => {
+  const tipTimer = vscode.workspace.getConfiguration().get('tipTimer');
+
+  console.log('timer called')
+  console.log('timer config value', tipTimer)
+
+  // initial tip
+  displayTip();
+
+  // Shorthand
+  const intervalSetter = (hours: number, minutes: number) => {
     let milliseconds = convertToMilliseconds(hours, minutes);
 
-      setInterval( () => {
-        outputString = recurseThroughTree(rootDataObj);
-        vscode.window.showInformationMessage(outputString);
-        },
-        milliseconds
-      );
-    };
+    clearInterval(prevIntervalId);
 
-    switch (tipTimer) {
-      case '5 minutes':
-        displayTip(0, 0.1);
-        break;
-      case '10 minutes':
-        displayTip(0, 0.5);
-        break;
-      case '15 minutes':
-        displayTip(0, 15);
-        break;
-      case '30 minutes':
-        displayTip(0, 30);
-        break;
-      case '1 hour':
-        displayTip(1, 0);
-        break;
-      case '2 hours':
-        displayTip(2, 0);
-        break;
-      case '4 hours':
-        displayTip(4, 0);
-        break;
-      case '8 hours':
-        displayTip(8, 0);
-        break;
-      case '1 day':
-        displayTip(24, 0);
-        break;
-      case '1 week':
-        displayTip(168, 0);
-        break;
-      case '1 month':
-        displayTip(730, 0);
-        break;
-    }
+    prevIntervalId = setInterval(() => {
+      displayTip();
+    }, milliseconds);
+    console.log(`new interval id %{prevInterval}`)
   };
 
+  switch (tipTimer) {
+    case '5 minutes':
+      intervalSetter(0, 5);
+      break;
+    case '10 minutes':
+      intervalSetter(0, 10);
+      break;
+    case '15 minutes':
+      intervalSetter(0, 15);
+      break;
+    case '30 minutes':
+      intervalSetter(0, 30);
+      break;
+    case '1 hour':
+      intervalSetter(1, 0);
+      break;
+    case '2 hours':
+      intervalSetter(2, 0);
+      break;
+    case '4 hours':
+      intervalSetter(4, 0);
+      break;
+    case '8 hours':
+      intervalSetter(8, 0);
+      break;
+    case '1 day':
+      intervalSetter(24, 0);
+      break;
+    case '1 week':
+      intervalSetter(168, 0);
+      break;
+    case '1 month':
+      intervalSetter(730, 0);
+      break;
+  }
+};
+
+const updateConfigValues = async () => {
+  const timer = vscode.workspace.getConfiguration();
+  await timer.update(
+    'tipTimer',
+    timer,
+    vscode.ConfigurationTarget.Global
+  );
+
+  
+
+  // const testingTips = vscode.workspace.getConfiguration(
+  //   'cleanCode.tipsForTestingCode'
+  // );
+  // await testingTips.update(
+  //   'tipsForTestingCode',
+  //   false,
+  //   vscode.ConfigurationTarget.Global
+  // );
+};
+
+
+
+export function activate({ subscriptions }: vscode.ExtensionContext) {
+  subscriptions.push(
+    vscode.commands.registerCommand('onCommand:extension.displayTip', displayTip),
+    vscode.commands.registerCommand('onCommand:config.configureTipTimer',() => updateConfigValues()),
+  );
+
+  // Display a message box to the user on startup
   timer();
 
-  // vscode.workspace.onDidChangeConfiguration(async (e: vscode.ConfigurationChangeEvent) => {
-  //   if (e.affectsConfiguration('tipTimer')) {
-
-  //     const tipTimer = await vscode.workspace.getConfiguration().get('tipTimer');
-
-  //     switch (tipTimer) {
-  //       case '5 minutes':
-  //         // displayTip();
-  //         console.log(tipTimer);
-  //         break;
-  //       case '10 minutes':
-  //         // displayTip();
-  //         console.log(tipTimer);
-  //         break;
-  //       case '15 minutes':
-  //         // displayTip();
-  //         break;
-  //       case '30 minutes':
-  //         // displayTip();
-  //         break;
-  //       case '1 hour':
-  //         // displayTip();
-  //         break;
-  //       case '2 hours':
-  //         // displayTip();
-  //         break;
-  //       case '4 hours':
-  //         // displayTip();
-  //         break;
-  //       case '8 hours':
-  //         // displayTip();
-  //         break;
-  //       case '1 day':
-  //         // displayTip();
-  //         break;
-  //       case '1 week':
-  //         // displayTip();
-  //         break;
-  //       case '1 month':
-  //         // displayTip();
-  //         break;
-  //     }
-  //   }
-  // });
-
-  subscriptions.push(
-    vscode.commands.registerCommand('onCommand:extension.displayTip', () => {
-      outputString = recurseThroughTree(rootDataObj);
-
-      // Display a message box to the user per click
-      vscode.window.showInformationMessage(outputString);
-    }),
-
-    vscode.commands.registerCommand('onCommand:config.configureTipTimer', () => {
-      const updateConfigValues = async () => {
-        const timer = vscode.workspace.getConfiguration('cleanCode.tipTimer');
-        await timer.update('tipTimer', "15 minutes", vscode.ConfigurationTarget.Global);
-        
-        const testingTips = vscode.workspace.getConfiguration('cleanCode.tipsForTestingCode');
-        await testingTips.update('tipsForTestingCode', false, vscode.ConfigurationTarget.Global);
-
-
-      };
-    
-      updateConfigValues();
-    })
-  );
+  vscode.workspace.onDidChangeConfiguration(e => {
+    if (e.affectsConfiguration('tipTimer')) {
+      console.log('config change')
+      // updateConfigValues();
+      timer();
+    }
+  });
 
   // Add status bar item
   const myStatusBarItem: vscode.StatusBarItem = vscode.window.createStatusBarItem(
@@ -243,19 +222,15 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
   subscriptions.push(myStatusBarItem);
   myStatusBarItem.show();
 
-  // Display a message box to the user on startup
-  outputString = recurseThroughTree(rootDataObj);
-  vscode.window.showInformationMessage(outputString);
-  
-//   const testingToggle = vscode.workspace
-//     .getConfiguration('tipsForTestingCode');
+  //   const testingToggle = vscode.workspace
+  //     .getConfiguration('tipsForTestingCode');
 
-//   console.log(testingToggle);
+  //   console.log(testingToggle);
 
-//   switch (testingToggle) {
-//     case true:
-//       break;
-//     case false:
-//       break;
-//   }
+  //   switch (testingToggle) {
+  //     case true:
+  //       break;
+  //     case false:
+  //       break;
+  //   }
 }
