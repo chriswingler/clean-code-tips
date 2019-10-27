@@ -113,6 +113,18 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 
       // Display a message box to the user per click
       vscode.window.showInformationMessage(outputString);
+    }),
+
+    vscode.commands.registerCommand('onCommand:config.configureTipTimer', () => {
+      const updateConfigValues = async () => {
+        const timer = vscode.workspace.getConfiguration('cleanCode.tipTimer');
+        await timer.update('tipTimer', "hey", vscode.ConfigurationTarget.Global);
+    
+        const testingTips = vscode.workspace.getConfiguration('cleanCode.tipsForTestingCode');
+        await testingTips.update('tipsForTestingCode', "hey", vscode.ConfigurationTarget.Global);
+      };
+    
+      updateConfigValues();
     })
   );
 
@@ -124,8 +136,8 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 
   myStatusBarItem.text = 'Clean Code Tips';
 
-  // Make a tip show when clicking on status bar item
-  myStatusBarItem.command = 'onCommand:extension.displayTip';
+  // // Make a tip show when clicking on status bar item
+  // myStatusBarItem.command = 'onCommand:extension.displayTip';
 
   outputString = recurseThroughTree(rootDataObj);
 
@@ -135,8 +147,8 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
   myStatusBarItem.show();
 
   // Shorthand
-  const displayTip = () =>
-    vscode.commands.executeCommand('extension.displayTip');
+  // const displayTip = () =>
+  //   vscode.commands.executeCommand('extension.displayTip');
 
   // Add settings page
   const tipTimer = vscode.workspace.getConfiguration().get('tipTimer');
@@ -145,39 +157,39 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 
   switch (tipTimer) {
     case '5 minutes':
-      displayTip();
+      // displayTip();
       console.log('5 minutes!!')
       break;
     case '10 minutes':
-      displayTip();
+      // displayTip();
       console.log('10 minutes!!')
       break;
     case '15 minutes':
-      displayTip();
+      // displayTip();
       break;
     case '30 minutes':
-      displayTip();
+      // displayTip();
       break;
     case '1 hour':
-      displayTip();
+      // displayTip();
       break;
     case '2 hours':
-      displayTip();
+      // displayTip();
       break;
     case '4 hours':
-      displayTip();
+      // displayTip();
       break;
     case '8 hours':
-      displayTip();
+      // displayTip();
       break;
     case '1 day':
-      displayTip();
+      // displayTip();
       break;
     case '1 week':
-      displayTip();
+      // displayTip();
       break;
     case '1 month':
-      displayTip();
+      // displayTip();
       break;
   }
 

@@ -23,7 +23,7 @@
       {
         "title": "Clean Code Tips",
         "properties": {
-          "cleanCode.tipTimer": {
+          "tipTimer": {
             "type": "string",
             "enum": [
               "5 minutes",
@@ -40,17 +40,13 @@
             ],
             "default": "5 minutes",
             "description": "Time between tips while window open",
-            "scope": "window"
+            "scope": "application"
           },
-          "cleanCode.tipsForTestingCode": {
+          "tipsForTestingCode": {
             "type": "boolean",
-            "enum": [
-              true,
-              false
-            ],
             "default": true,
             "description": "Enabled?",
-            "scope": "window"
+            "scope": "application"
           }
         }
       }
