@@ -38,7 +38,7 @@
               "1 week",
               "1 month"
             ],
-            "default": "5 minutes",
+            "default": "2 hours",
             "description": "Time between tips while window open",
             "scope": "application"
           },

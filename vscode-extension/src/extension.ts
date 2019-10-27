@@ -1,12 +1,13 @@
 import * as vscode from 'vscode';
 import * as cleanCodeTips from '../../cleancodecheatsheet2.4.json';
+import convertToMilliseconds from './utils/convertToMilliseconds';
 
 type categories = {
   [key: string]: { [key: string]: { [key: string]: string } };
 };
 
 const recurseThroughTree = (
-  categories: any | { text: string; type: string },
+  categories: any,
   outputString: string = '',
   i: number = 0
 ): string => {
@@ -16,7 +17,7 @@ const recurseThroughTree = (
       categoryKeys[Math.floor(categoryKeys.length * Math.random())]
     );
     const randomCategoryName: string = categoryKeys[randomCategoryIndex];
-    const randomCategories: any = categories[randomCategoryName];
+    const randomCategories: string = categories[randomCategoryName];
 
     if (i === 0) {
       outputString += `${randomCategoryName} `;
@@ -107,112 +108,104 @@ const rootDataObj: categories = cleanCodeTips['Clean Code Cheat Sheet'];
 export function activate({ subscriptions }: vscode.ExtensionContext) {
   let outputString: string = '';
 
-  console.log('activated')
-
-  const timer = async () => {
-    const tipTimer = await vscode.workspace.getConfiguration().get('tipTimer');
+  const timer = () => {
+    const tipTimer = vscode.workspace.getConfiguration().get('tipTimer');
 
       // Shorthand
-    const displayTip = () => {
+    const displayTip = (hours: number, minutes: number) => {
+    let milliseconds = convertToMilliseconds(hours, minutes);
 
-      setInterval(() => {
-        
-      outputString = recurseThroughTree(rootDataObj);
-
-      // Display a message box to the user per click
-      vscode.window.showInformationMessage(outputString);
-      }, 2000);
-
-
+      setInterval( () => {
+        outputString = recurseThroughTree(rootDataObj);
+        vscode.window.showInformationMessage(outputString);
+        },
+        milliseconds
+      );
     };
 
     switch (tipTimer) {
       case '5 minutes':
-        displayTip();
-        console.log(tipTimer);
+        displayTip(0, 0.1);
         break;
       case '10 minutes':
-        displayTip();
-        console.log(tipTimer);
+        displayTip(0, 0.5);
         break;
       case '15 minutes':
-        // displayTip();
+        displayTip(0, 15);
         break;
       case '30 minutes':
-        // displayTip();
+        displayTip(0, 30);
         break;
       case '1 hour':
-        // displayTip();
+        displayTip(1, 0);
         break;
       case '2 hours':
-        // displayTip();
+        displayTip(2, 0);
         break;
       case '4 hours':
-        // displayTip();
+        displayTip(4, 0);
         break;
       case '8 hours':
-        // displayTip();
+        displayTip(8, 0);
         break;
       case '1 day':
-        // displayTip();
+        displayTip(24, 0);
         break;
       case '1 week':
-        // displayTip();
+        displayTip(168, 0);
         break;
       case '1 month':
-        // displayTip();
+        displayTip(730, 0);
         break;
     }
-  }
+  };
 
   timer();
 
-  vscode.workspace.onDidChangeConfiguration(async (e: vscode.ConfigurationChangeEvent) => {
-    if (e.affectsConfiguration('tipTimer')) {
+  // vscode.workspace.onDidChangeConfiguration(async (e: vscode.ConfigurationChangeEvent) => {
+  //   if (e.affectsConfiguration('tipTimer')) {
 
-  const tipTimer = await vscode.workspace.getConfiguration().get('tipTimer');
+  //     const tipTimer = await vscode.workspace.getConfiguration().get('tipTimer');
 
-  switch (tipTimer) {
-    case '5 minutes':
-      // displayTip();
-      console.log(tipTimer);
-      break;
-    case '10 minutes':
-      // displayTip();
-      console.log(tipTimer);
-      break;
-    case '15 minutes':
-      // displayTip();
-      break;
-    case '30 minutes':
-      // displayTip();
-      break;
-    case '1 hour':
-      // displayTip();
-      break;
-    case '2 hours':
-      // displayTip();
-      break;
-    case '4 hours':
-      // displayTip();
-      break;
-    case '8 hours':
-      // displayTip();
-      break;
-    case '1 day':
-      // displayTip();
-      break;
-    case '1 week':
-      // displayTip();
-      break;
-    case '1 month':
-      // displayTip();
-      break;
-  }
-      
-      console.log('TIMESTAMP ' + Date.now());
-    }
-  });
+  //     switch (tipTimer) {
+  //       case '5 minutes':
+  //         // displayTip();
+  //         console.log(tipTimer);
+  //         break;
+  //       case '10 minutes':
+  //         // displayTip();
+  //         console.log(tipTimer);
+  //         break;
+  //       case '15 minutes':
+  //         // displayTip();
+  //         break;
+  //       case '30 minutes':
+  //         // displayTip();
+  //         break;
+  //       case '1 hour':
+  //         // displayTip();
+  //         break;
+  //       case '2 hours':
+  //         // displayTip();
+  //         break;
+  //       case '4 hours':
+  //         // displayTip();
+  //         break;
+  //       case '8 hours':
+  //         // displayTip();
+  //         break;
+  //       case '1 day':
+  //         // displayTip();
+  //         break;
+  //       case '1 week':
+  //         // displayTip();
+  //         break;
+  //       case '1 month':
+  //         // displayTip();
+  //         break;
+  //     }
+  //   }
+  // });
 
   subscriptions.push(
     vscode.commands.registerCommand('onCommand:extension.displayTip', () => {
@@ -247,18 +240,13 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 
   // // Make a tip show when clicking on status bar item
   myStatusBarItem.command = 'onCommand:extension.displayTip';
-
-  outputString = recurseThroughTree(rootDataObj);
-
-  // Display a message box to the user on startup
-  vscode.window.showInformationMessage(outputString);
   subscriptions.push(myStatusBarItem);
   myStatusBarItem.show();
 
-
-
-
-
+  // Display a message box to the user on startup
+  outputString = recurseThroughTree(rootDataObj);
+  vscode.window.showInformationMessage(outputString);
+  
 //   const testingToggle = vscode.workspace
 //     .getConfiguration('tipsForTestingCode');
 
@@ -270,4 +258,4 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 //     case false:
 //       break;
 //   }
-// }
+}
