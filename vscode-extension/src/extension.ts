@@ -187,8 +187,6 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 
   vscode.workspace.onDidChangeConfiguration(e => {
     if (e.affectsConfiguration('tipTimer')) {
-      console.log('config change');
-      // updateConfigValues();
       timer();
     }
   });
