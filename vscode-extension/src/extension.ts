@@ -107,6 +107,14 @@ const rootDataObj: categories = cleanCodeTips['Clean Code Cheat Sheet'];
 export function activate({ subscriptions }: vscode.ExtensionContext) {
   let outputString: string = '';
 
+  vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+    if (e.affectsConfiguration('tipTimer')) {
+      console.log('heyehey');
+    }
+    
+    // return e.affectsConfiguration('tipTimer') && console.log('heyeheyehy')
+  });
+
   subscriptions.push(
     vscode.commands.registerCommand('onCommand:extension.displayTip', () => {
       outputString = recurseThroughTree(rootDataObj);
@@ -119,7 +127,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
       const updateConfigValues = async () => {
         const timer = vscode.workspace.getConfiguration('cleanCode.tipTimer');
         await timer.update('tipTimer', "hey", vscode.ConfigurationTarget.Global);
-    
+        
         const testingTips = vscode.workspace.getConfiguration('cleanCode.tipsForTestingCode');
         await testingTips.update('tipsForTestingCode', "hey", vscode.ConfigurationTarget.Global);
       };
@@ -137,7 +145,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
   myStatusBarItem.text = 'Clean Code Tips';
 
   // // Make a tip show when clicking on status bar item
-  // myStatusBarItem.command = 'onCommand:extension.displayTip';
+  myStatusBarItem.command = 'onCommand:extension.displayTip';
 
   outputString = recurseThroughTree(rootDataObj);
 
@@ -194,8 +202,9 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
   }
 
   const testingToggle = vscode.workspace
-    .getConfiguration()
-    .get('tipsForTestingCode');
+    .getConfiguration('tipsForTestingCode');
+
+  console.log(testingToggle);
 
   switch (testingToggle) {
     case true:
