@@ -146,9 +146,11 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
   switch (tipTimer) {
     case '5 minutes':
       displayTip();
+      console.log('5 minutes!!')
       break;
     case '10 minutes':
       displayTip();
+      console.log('10 minutes!!')
       break;
     case '15 minutes':
       displayTip();
@@ -182,6 +184,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
   const testingToggle = vscode.workspace
     .getConfiguration()
     .get('tipsForTestingCode');
+
   switch (testingToggle) {
     case true:
       break;
