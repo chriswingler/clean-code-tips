@@ -115,9 +115,6 @@ let prevIntervalId: NodeJS.Timeout;
 const timer = () => {
   const tipTimer = vscode.workspace.getConfiguration().get('tipTimer');
 
-  console.log('timer called')
-  console.log('timer config value', tipTimer)
-
   // initial tip
   displayTip();
 
@@ -130,7 +127,6 @@ const timer = () => {
     prevIntervalId = setInterval(() => {
       displayTip();
     }, milliseconds);
-    console.log(`new interval id %{prevInterval}`)
   };
 
   switch (tipTimer) {
@@ -172,30 +168,18 @@ const timer = () => {
 
 const updateConfigValues = async () => {
   const timer = vscode.workspace.getConfiguration();
-  await timer.update(
-    'tipTimer',
-    timer,
-    vscode.ConfigurationTarget.Global
-  );
-
-  
-
-  // const testingTips = vscode.workspace.getConfiguration(
-  //   'cleanCode.tipsForTestingCode'
-  // );
-  // await testingTips.update(
-  //   'tipsForTestingCode',
-  //   false,
-  //   vscode.ConfigurationTarget.Global
-  // );
+  await timer.update('tipTimer', timer, vscode.ConfigurationTarget.Global);
 };
-
-
 
 export function activate({ subscriptions }: vscode.ExtensionContext) {
   subscriptions.push(
-    vscode.commands.registerCommand('onCommand:extension.displayTip', displayTip),
-    vscode.commands.registerCommand('onCommand:config.configureTipTimer',() => updateConfigValues()),
+    vscode.commands.registerCommand(
+      'onCommand:extension.displayTip',
+      displayTip
+    ),
+    vscode.commands.registerCommand('onCommand:config.configureTipTimer', () =>
+      updateConfigValues()
+    )
   );
 
   // Display a message box to the user on startup
@@ -203,7 +187,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 
   vscode.workspace.onDidChangeConfiguration(e => {
     if (e.affectsConfiguration('tipTimer')) {
-      console.log('config change')
+      console.log('config change');
       // updateConfigValues();
       timer();
     }
@@ -221,16 +205,4 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
   myStatusBarItem.command = 'onCommand:extension.displayTip';
   subscriptions.push(myStatusBarItem);
   myStatusBarItem.show();
-
-  //   const testingToggle = vscode.workspace
-  //     .getConfiguration('tipsForTestingCode');
-
-  //   console.log(testingToggle);
-
-  //   switch (testingToggle) {
-  //     case true:
-  //       break;
-  //     case false:
-  //       break;
-  //   }
 }
