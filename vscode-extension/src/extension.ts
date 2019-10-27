@@ -130,19 +130,13 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	subscriptions.push(myStatusBarItem);
   myStatusBarItem.show();
   
-  // Add settings page
-  const testingToggle = vscode.workspace.getConfiguration().get('tipTime');
-	switch (testingToggle) {
-		case true:
-			break;
-		case false:
-			break;
-	}
-
-  const tipTime = vscode.workspace.getConfiguration().get('tipsForTestingCode');
+  // Shorthand
   const displayTip = () => vscode.commands.executeCommand('extension.displayTip');
 
-	switch (tipTime) {
+  // Add settings page
+  const tipTimer = vscode.workspace.getConfiguration().get('tipTimer');
+
+	switch (tipTimer) {
 		case '5 minutes':
       displayTip();
 			break;
@@ -175,6 +169,14 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 			break;
 		case '1 month':
       displayTip();
+			break;
+  }
+  
+  const testingToggle = vscode.workspace.getConfiguration().get('tipsForTestingCode');
+	switch (testingToggle) {
+		case true:
+			break;
+		case false:
 			break;
 	}
 }
