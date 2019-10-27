@@ -92,12 +92,6 @@ const recurseThroughTree = (
 
     return recurseThroughTree(randomCategories, outputString, i);
   } else {
-    if (categories.type === '-') {
-      outputString += 'Bad: ';
-    } else {
-      outputString += 'Good: ';
-    }
-
     outputString += categories.text;
     return outputString;
   }
@@ -187,8 +181,6 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 
   vscode.workspace.onDidChangeConfiguration(e => {
     if (e.affectsConfiguration('tipTimer')) {
-      console.log('config change');
-      // updateConfigValues();
       timer();
     }
   });
