@@ -4,14 +4,12 @@
 
 ## Author
 
-[Chris Wingler](https://chriswingler.github.io/)
+### - [Chris Wingler](https://chriswingler.github.io/)
 
 ## Planned features
-- Settings page
-- Add timer to settings page
 - Add testing tips
-- Language Translations
-
+- Add testing tips to settings page
+- Language translations
 
 ## [Github repository](https://github.com/chriswingler/clean-code-tips)
 
