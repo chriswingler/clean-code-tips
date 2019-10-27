@@ -1,6 +1,12 @@
 # Displays a clean code tip each time you open VSCode to help us all become better engineers!
 
+## What the tips look like!
+
 ![Video of clean code tips popping up](images/tips.gif "Tip popups!")
+
+## Configurable time between tips!
+
+![Image of dropdown timer configuration](images/timerConfig.png "Configurable time between tips!")
 
 ## Author
 
