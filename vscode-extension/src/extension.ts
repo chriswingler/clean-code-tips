@@ -139,34 +139,42 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 			break;
 	}
 
-	const tipTime = vscode.workspace.getConfiguration().get('tipsForTestingCode');
+  const tipTime = vscode.workspace.getConfiguration().get('tipsForTestingCode');
+  const displayTip = () => vscode.commands.executeCommand('extension.displayTip');
+
 	switch (tipTime) {
 		case '5 minutes':
-			vscode.commands.executeCommand('workbench.explorer');
+      displayTip();
 			break;
 		case '10 minutes':
-			vscode.commands.executeCommand('workbench.search');
+      displayTip();
 			break;
 		case '15 minutes':
-			vscode.commands.executeCommand('workbench.scm');
+      displayTip();
 			break;
 		case '30 minutes':
-			vscode.commands.executeCommand('workbench.debug');
+      displayTip();
 			break;
 		case '1 hour':
-			vscode.commands.executeCommand('workbench.extensions');
+      displayTip();
 			break;
 		case '2 hours':
+      displayTip();
 			break;
 		case '4 hours':
+      displayTip();
 			break;
 		case '8 hours':
+      displayTip();
 			break;
 		case '1 day':
+      displayTip();
 			break;
 		case '1 week':
+      displayTip();
 			break;
 		case '1 month':
+      displayTip();
 			break;
 	}
 }
