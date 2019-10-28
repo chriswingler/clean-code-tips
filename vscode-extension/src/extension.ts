@@ -16,8 +16,8 @@ const recurseThroughTree = (
     const randomCategoryIndex: number = categoryKeys.indexOf(
       categoryKeys[Math.floor(categoryKeys.length * Math.random())]
     );
-    const randomCategoryName: string = categoryKeys[randomCategoryIndex];
-    const randomCategories: string = categories[randomCategoryName];
+    const randomCategoryName: any = categoryKeys[randomCategoryIndex];
+    const randomCategories: any = categories[randomCategoryName];
 
     if (i === 0) {
       outputString += `${randomCategoryName} `;
@@ -97,7 +97,7 @@ const recurseThroughTree = (
   }
 };
 
-const displayTip = () => {
+const displayTip = (): void => {
   const rootDataObj: any = cleanCodeTips['Clean Code Cheat Sheet'];
 
   const outputString = recurseThroughTree(rootDataObj);
@@ -106,7 +106,7 @@ const displayTip = () => {
 
 let prevIntervalId: NodeJS.Timeout;
 
-const timer = () => {
+const timer = (): void => {
   const tipTimer = vscode.workspace.getConfiguration().get('tipTimer');
 
   // initial tip
@@ -126,12 +126,12 @@ const timer = () => {
   intervalSwitch(tipTimer, intervalSetter);
 };
 
-const updateConfigValues = async () => {
+const updateConfigValues = async (): Promise<any> => {
   const timer = vscode.workspace.getConfiguration();
   await timer.update('tipTimer', timer, vscode.ConfigurationTarget.Global);
 };
 
-export function activate({ subscriptions }: vscode.ExtensionContext) {
+export function activate({ subscriptions }: vscode.ExtensionContext): void {
   subscriptions.push(
     vscode.commands.registerCommand(
       'onCommand:extension.displayTip',
