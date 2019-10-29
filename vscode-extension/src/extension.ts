@@ -3,6 +3,29 @@ import * as cleanCodeTips from '../../cleancodecheatsheet2.4.json';
 import convertToMilliseconds from './utils/convertToMilliseconds';
 import intervalSwitch from './utils/intervalSwitch';
 
+type categoryLeaf = {
+  text: string;
+  type: string;
+};
+
+type secondaryCategory = {
+  [key: string]: categoryLeaf
+};
+
+type primaryCategory = {
+  [key: string]: secondaryCategory
+};
+
+type primaryCategories = {
+  [key: string]: primaryCategory
+};
+
+type cleanCodeData = {
+  [key: string]: primaryCategories
+};
+
+const cleanCodeData = cleanCodeTips['Clean Code Cheat Sheet'];
+
 const recurseThroughTree = (
   categories: any,
   outputString: string = '',
