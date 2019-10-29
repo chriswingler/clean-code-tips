@@ -17,7 +17,7 @@
   "activationEvents": [
     "*"
   ],
-  "main": "./out/Clean-Coding-Tips/vscode-extension/src/extension.js",
+  "main": "./out/clean-code-tips/vscode-extension/src/extension.js",
   "contributes": {
     "configuration": [
       {
