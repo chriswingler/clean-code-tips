@@ -16,20 +16,18 @@ interface Categories {
   [key: string]: SecondaryCategories;
 }
 
-const primaryCategories: Categories =
-  cleanCodeTips['Clean Code Cheat Sheet'];
+const primaryCategories: Categories = cleanCodeTips['Clean Code Cheat Sheet'];
 
-  // TODO inspect to see if recursion is necessary here
+// TODO inspect to see if recursion is necessary here
 const recurseThroughTree = (
   categories?: Categories | SecondaryCategories,
   outputString: string = '',
-  leaf?: Leaf,
+  leaf?: Leaf
 ): string => {
-
   // Exit case
   if (leaf) {
-      outputString += leaf.text;
-      return outputString;
+    outputString += leaf.text;
+    return outputString;
   }
 
   // TODO inspect the following to see if all are necessary
@@ -46,7 +44,8 @@ const recurseThroughTree = (
   const randomCategoryName: string = categoryKeys[randomCategoryIndex];
 
   // Use that value to access the matching second category
-  const SecondaryCategories: SecondaryCategories = primaryCategories[randomCategoryName];
+  const SecondaryCategories: SecondaryCategories =
+    primaryCategories[randomCategoryName];
 
   if (categories as SecondaryCategories) {
     outputString += ` > ${randomCategoryName} > `;
@@ -54,6 +53,7 @@ const recurseThroughTree = (
   }
 
   if (categories as Categories) {
+    // TODO move this into it's own util function
     {
       outputString += `${randomCategoryName} `;
 
@@ -121,8 +121,10 @@ const recurseThroughTree = (
       }
     }
 
-      return recurseThroughTree(SecondaryCategories, outputString);
+    return recurseThroughTree(SecondaryCategories, outputString);
   }
+
+  return outputString;
 };
 
 const displayTip = (): void => {
