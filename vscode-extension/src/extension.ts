@@ -3,46 +3,59 @@ import * as cleanCodeTips from '../../cleancodecheatsheet2.4.json';
 import convertToMilliseconds from './utils/convertToMilliseconds';
 import intervalSwitch from './utils/intervalSwitch';
 
-type categoryLeaf = {
+interface Leaf {
   text: string;
   type: string;
-};
+}
 
-type secondaryCategory = {
-  [key: string]: categoryLeaf
-};
+interface SecondaryCategories {
+  [key: string]: Leaf;
+}
 
-type primaryCategory = {
-  [key: string]: secondaryCategory
-};
+interface Categories {
+  [key: string]: SecondaryCategories;
+}
 
-type primaryCategories = {
-  [key: string]: primaryCategory
-};
+const primaryCategories: Categories =
+  cleanCodeTips['Clean Code Cheat Sheet'];
 
-type cleanCodeData = {
-  [key: string]: primaryCategories
-};
-
-const cleanCodeData = cleanCodeTips['Clean Code Cheat Sheet'];
-
+  // TODO inspect to see if recursion is necessary here
 const recurseThroughTree = (
-  categories: any,
   outputString: string = '',
-  i: number = 0
+  startingIndex: number,
+  categories?: Categories | SecondaryCategories,
+  leaf?: Leaf,
 ): string => {
-  // first or second level category
-  if (i < 2) {
-    // pick a random top level, and sub level category
-    // then pick a random leaf node
-    const categoryKeys: Array<string> = Object.keys(categories);
-    const randomCategoryIndex: number = categoryKeys.indexOf(
-      categoryKeys[Math.floor(categoryKeys.length * Math.random())]
-    );
-    const randomCategoryName: any = categoryKeys[randomCategoryIndex];
-    const randomCategories: any = categories[randomCategoryName];
 
-    if (i === 0) {
+  // Exit case
+  if (leaf) {
+      outputString += leaf.text;
+      return outputString;
+  }
+
+  // TODO inspect the following to see if all are necessary
+
+  // Transform object into an array of keys, so it can be indexed
+  const categoryKeys: Array<string> = Object.keys(primaryCategories);
+
+  // Grab a random index from array of keys
+  const randomCategoryIndex: number = categoryKeys.indexOf(
+    categoryKeys[Math.floor(categoryKeys.length * Math.random())]
+  );
+
+  // Get the value at that index
+  const randomCategoryName: string = categoryKeys[randomCategoryIndex];
+
+  // Use that value to access the matching second category
+  const SecondaryCategories: SecondaryCategories = primaryCategories[randomCategoryName];
+
+  if (categories as SecondaryCategories) {
+    outputString += ` > ${randomCategoryName} > `;
+    return recurseThroughTree(outputString, i, categories, leaf);
+  }
+
+  if (categories as Categories) {
+    {
       outputString += `${randomCategoryName} `;
 
       switch (randomCategoryName) {
@@ -107,23 +120,20 @@ const recurseThroughTree = (
           outputString += '🔨';
           break;
       }
-    } else {
-      outputString += ` > ${randomCategoryName} > `;
     }
 
-    i = i + 1;
+      // TODO shouldn't need to pass a starting index
+      startingIndex = startingIndex + 1;
 
-    return recurseThroughTree(randomCategories, outputString, i);
-  } else {
-    outputString += categories.text;
-    return outputString;
+      return recurseThroughTree(outputString, startingIndex, SecondaryCategories);
   }
 };
 
 const displayTip = (): void => {
   const rootDataObj: any = cleanCodeTips['Clean Code Cheat Sheet'];
 
-  const outputString = recurseThroughTree(rootDataObj);
+  // TODO shouldn't need to pass a starting index
+  const outputString = recurseThroughTree(rootDataObj, 0);
   vscode.window.showInformationMessage(outputString);
 };
 
