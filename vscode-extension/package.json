@@ -3,7 +3,7 @@
   "displayName": "Clean Code Tips",
   "description": "Displays a clean code tip each time you open VSCode to help us all become better engineers!",
   "publisher": "chriswingler",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "engines": {
     "vscode": "^1.39.0"
   },
@@ -17,7 +17,7 @@
   "activationEvents": [
     "*"
   ],
-  "main": "./out/Clean-Coding-Tips/vscode-extension/src/extension.js",
+  "main": "./out/clean-code-tips/vscode-extension/src/extension.js",
   "contributes": {
     "configuration": [
       {

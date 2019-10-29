@@ -1,23 +1,23 @@
 import * as vscode from 'vscode';
 import * as cleanCodeTips from '../../cleancodecheatsheet2.4.json';
 import convertToMilliseconds from './utils/convertToMilliseconds';
-
-type categories = {
-  [key: string]: { [key: string]: { [key: string]: string } };
-};
+import intervalSwitch from './utils/intervalSwitch';
 
 const recurseThroughTree = (
   categories: any,
   outputString: string = '',
   i: number = 0
 ): string => {
+  // first or second level category
   if (i < 2) {
+    // pick a random top level, and sub level category
+    // then pick a random leaf node
     const categoryKeys: Array<string> = Object.keys(categories);
     const randomCategoryIndex: number = categoryKeys.indexOf(
       categoryKeys[Math.floor(categoryKeys.length * Math.random())]
     );
-    const randomCategoryName: string = categoryKeys[randomCategoryIndex];
-    const randomCategories: string = categories[randomCategoryName];
+    const randomCategoryName: any = categoryKeys[randomCategoryIndex];
+    const randomCategories: any = categories[randomCategoryName];
 
     if (i === 0) {
       outputString += `${randomCategoryName} `;
@@ -97,8 +97,8 @@ const recurseThroughTree = (
   }
 };
 
-const displayTip = () => {
-  const rootDataObj: categories = cleanCodeTips['Clean Code Cheat Sheet'];
+const displayTip = (): void => {
+  const rootDataObj: any = cleanCodeTips['Clean Code Cheat Sheet'];
 
   const outputString = recurseThroughTree(rootDataObj);
   vscode.window.showInformationMessage(outputString);
@@ -106,7 +106,7 @@ const displayTip = () => {
 
 let prevIntervalId: NodeJS.Timeout;
 
-const timer = () => {
+const timer = (): void => {
   const tipTimer = vscode.workspace.getConfiguration().get('tipTimer');
 
   // initial tip
@@ -123,49 +123,15 @@ const timer = () => {
     }, milliseconds);
   };
 
-  switch (tipTimer) {
-    case '5 minutes':
-      intervalSetter(0, 5);
-      break;
-    case '10 minutes':
-      intervalSetter(0, 10);
-      break;
-    case '15 minutes':
-      intervalSetter(0, 15);
-      break;
-    case '30 minutes':
-      intervalSetter(0, 30);
-      break;
-    case '1 hour':
-      intervalSetter(1, 0);
-      break;
-    case '2 hours':
-      intervalSetter(2, 0);
-      break;
-    case '4 hours':
-      intervalSetter(4, 0);
-      break;
-    case '8 hours':
-      intervalSetter(8, 0);
-      break;
-    case '1 day':
-      intervalSetter(24, 0);
-      break;
-    case '1 week':
-      intervalSetter(168, 0);
-      break;
-    case '1 month':
-      intervalSetter(730, 0);
-      break;
-  }
+  intervalSwitch(tipTimer, intervalSetter);
 };
 
-const updateConfigValues = async () => {
+const updateConfigValues = async (): Promise<any> => {
   const timer = vscode.workspace.getConfiguration();
   await timer.update('tipTimer', timer, vscode.ConfigurationTarget.Global);
 };
 
-export function activate({ subscriptions }: vscode.ExtensionContext) {
+export function activate({ subscriptions }: vscode.ExtensionContext): void {
   subscriptions.push(
     vscode.commands.registerCommand(
       'onCommand:extension.displayTip',

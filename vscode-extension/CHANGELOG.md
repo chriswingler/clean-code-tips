@@ -1,5 +1,13 @@
 # Change Log
 
+1.4.0 edit readme / bugfixes
+
+1.3.0 refactoring
+
+1.2.0 bugfixes
+
+1.1.0 bugfixes
+
 1.0.0 implement timer
 
 0.4.0 bug fixes
