@@ -19,6 +19,7 @@
 - Add display tip on startup enabled / disabled checkbox in settings
 - Gather data from more sources
 - Language translations
+- Add code scanning for more relevant tips
 - Support for other editors
 
 ## [Github repository](https://github.com/chriswingler/clean-code-tips)

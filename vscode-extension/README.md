@@ -18,6 +18,7 @@
 - Add testing tips enabled / disabled checkbox in settings
 - Add display tip on startup enabled / disabled checkbox in settings
 - Gather data from more sources
+- Add code scanning for more relevant tips
 - Language translations
 
 ## [Github repository](https://github.com/chriswingler/clean-code-tips)
