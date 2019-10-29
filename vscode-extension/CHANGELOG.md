@@ -1,5 +1,7 @@
 # Change Log
 
+1.4.0 edit readme / bugfixes
+
 1.3.0 refactoring
 
 1.2.0 bugfixes

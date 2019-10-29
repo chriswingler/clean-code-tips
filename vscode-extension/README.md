@@ -8,16 +8,23 @@
 
 ![Image of dropdown timer configuration](images/timerConfig.png "Configurable time between tips!")
 
-## Author
-
-### - [Chris Wingler](https://chriswingler.github.io/)
+## Testimonial
+> "I thought you made something similar to ESlint.
+> I was wondering why you would do that but this is actually pretty useful."
+- /u/596F75206E65726421 on Reddit
 
 ## Planned features
 - Add testing tips
-- Add testing tips to settings page
+- Add testing tips enabled / disabled checkbox in settings
+- Add display tip on startup enabled / disabled checkbox in settings
+- Gather data from more sources
 - Language translations
 
 ## [Github repository](https://github.com/chriswingler/clean-code-tips)
+
+## Author
+
+### - [Chris Wingler](https://chriswingler.github.io/)
 
 ## Attributions
 
