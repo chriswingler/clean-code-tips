@@ -21,9 +21,8 @@ const primaryCategories: Categories =
 
   // TODO inspect to see if recursion is necessary here
 const recurseThroughTree = (
-  outputString: string = '',
-  startingIndex: number,
   categories?: Categories | SecondaryCategories,
+  outputString: string = '',
   leaf?: Leaf,
 ): string => {
 
@@ -51,7 +50,7 @@ const recurseThroughTree = (
 
   if (categories as SecondaryCategories) {
     outputString += ` > ${randomCategoryName} > `;
-    return recurseThroughTree(outputString, i, categories, leaf);
+    return recurseThroughTree(categories, outputString, leaf);
   }
 
   if (categories as Categories) {
@@ -122,18 +121,13 @@ const recurseThroughTree = (
       }
     }
 
-      // TODO shouldn't need to pass a starting index
-      startingIndex = startingIndex + 1;
-
-      return recurseThroughTree(outputString, startingIndex, SecondaryCategories);
+      return recurseThroughTree(SecondaryCategories, outputString);
   }
 };
 
 const displayTip = (): void => {
-  const rootDataObj: any = cleanCodeTips['Clean Code Cheat Sheet'];
-
-  // TODO shouldn't need to pass a starting index
-  const outputString = recurseThroughTree(rootDataObj, 0);
+  const rootDataObj: Categories = cleanCodeTips['Clean Code Cheat Sheet'];
+  const outputString = recurseThroughTree(rootDataObj);
   vscode.window.showInformationMessage(outputString);
 };
 
