@@ -1,5 +1,9 @@
 # Change Log
 
+1.5.0 major refactor / code is way more clean
+
+1.4.1 add testimonial
+
 1.4.0 edit readme / bugfixes
 
 1.3.0 refactoring
