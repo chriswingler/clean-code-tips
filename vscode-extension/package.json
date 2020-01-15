@@ -41,18 +41,13 @@
             "default": "2 hours",
             "description": "Time between tips while window open",
             "scope": "application"
+          },
+          "displayTipAtStartup": {
+            "type": "boolean",
+            "default": true,
+            "scope": "application"
           }
         }
-      }
-    ],
-    "commands": [
-      {
-        "command": "extension.displayTip",
-        "title": "Display Tip"
-      },
-      {
-        "command": "extension.config.configureTipTimer",
-        "title": "Configure Clean Code Tip timer"
       }
     ]
   },
