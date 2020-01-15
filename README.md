@@ -2,21 +2,23 @@
 
 ## What the tips look like!
 
-![Video of clean code tips popping up](images/tips.gif "Tip popups!")
+![Video of clean code tips popping up](images/tips.gif 'Tip popups!')
 
 ## Configurable time between tips!
 
-![Image of dropdown timer configuration](images/timerConfig.png "Configurable time between tips!")
+![Image of dropdown timer configuration](images/timerConfig.png 'Configurable time between tips!')
 
 ## Testimonial
+
 > "I thought you made something similar to ESlint.
 > I was wondering why you would do that but this is actually pretty useful."
+
 - /u/596F75206E65726421 on Reddit
 
 ## Planned features
+
 - Add testing tips
 - Add testing tips enabled / disabled checkbox in settings
-- Add display tip on startup enabled / disabled checkbox in settings
 - Gather data from more sources
 - Language translations
 - Add code scanning for more relevant tips

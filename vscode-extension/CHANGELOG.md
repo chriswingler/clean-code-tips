@@ -1,5 +1,7 @@
 # Change Log
 
+1.6.0 add Display Tip At Startup configuration option
+
 1.5.0 major refactor / code is way more clean
 
 1.4.1 add testimonial
