@@ -51,6 +51,15 @@
       }
     ]
   },
+  "keywords": [
+    "javascript",
+    "linters",
+    "typescript",
+    "clean code",
+    "engineering",
+    "education",
+    "programming"
+  ],
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
