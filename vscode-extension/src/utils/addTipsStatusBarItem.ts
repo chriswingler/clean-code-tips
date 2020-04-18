@@ -10,7 +10,7 @@ const addTipsStatusBarItem = () => {
   tipsStatusBarItem.text = 'Clean Code Tips';
 
   // Make a tip show when clicking on status bar item
-  tipsStatusBarItem.command = 'onCommand:extension.displayTip';
+  tipsStatusBarItem.command = 'displayTip';
 
   return tipsStatusBarItem;
 };
