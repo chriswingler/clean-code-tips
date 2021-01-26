@@ -1,4 +1,4 @@
-const intervalSwitch = (tipTimer: any, intervalSetter: Function) => {
+const intervalSwitch = (tipTimer: string, intervalSetter: Function) => {
   switch (tipTimer) {
     case '5 minutes':
       intervalSetter(0, 5);

@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import getCategoryString from './getCategoryString';
-import { PrimaryCategories } from '../types/types';
+import {PrimaryCategories} from '../types/types';
 import * as cleanCodeTips from '../../../cleancodecheatsheet2.4.json';
 
 const primaryCategories: PrimaryCategories =

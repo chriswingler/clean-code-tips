@@ -1,4 +1,4 @@
-import { PrimaryCategories } from '../types/types';
+import {PrimaryCategories} from '../types/types';
 
 const transformCategory = (
   primaryCategories: PrimaryCategories

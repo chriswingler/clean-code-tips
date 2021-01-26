@@ -8,12 +8,16 @@ const timer = (): void => {
 
   const tipTimer = vscode.workspace.getConfiguration().get('tipTimer');
 
+  if (typeof tipTimer !== 'string') {
+    return;
+  }
+
   // initial tip
   displayTip();
 
   // Shorthand
   const intervalSetter = (hours: number, minutes: number) => {
-    let milliseconds = convertToMilliseconds(hours, minutes);
+    const milliseconds = convertToMilliseconds(hours, minutes);
 
     clearInterval(prevIntervalId);
 

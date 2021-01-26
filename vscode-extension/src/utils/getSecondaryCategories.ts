@@ -1,4 +1,4 @@
-import { SecondaryCategory, Leaf } from '../types/types';
+import {SecondaryCategory, Leaf} from '../types/types';
 
 const getSecondaryCategories = (
   secondaryCategories: SecondaryCategory,
