@@ -9,23 +9,27 @@
       "name": "Run VSCode Extension",
       "type": "extensionHost",
       "request": "launch",
-      "runtimeExecutable": "${execPath}/vscode-extension",
+      "runtimeExecutable": "${execPath}",
+      "stopOnEntry": false,
+      "sourceMaps": true,
       "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}/vscode-extension"
+        "--extensionDevelopmentPath=${workspaceFolder}"
       ],
-      "outFiles": ["${workspaceFolder}/vscode-extension/out/**/*.js"],
+      "outFiles": ["${workspaceFolder}/out/**/*.js"],
       "preLaunchTask": "npm: watch"
     },
     {
       "name": "VSCode Extension Tests",
       "type": "extensionHost",
       "request": "launch",
-      "runtimeExecutable": "${execPath}/vscode-extension",
+      "runtimeExecutable": "${execPath}",
+      "stopOnEntry": false,
+      "sourceMaps": true,
       "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}/vscode-extension",
-        "--extensionTestsPath=${workspaceFolder}/vscode-extension/out/test/suite/index"
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--extensionTestsPath=${workspaceFolder}/out/test/suite/index"
       ],
-      "outFiles": ["${workspaceFolder}/vscode-extension/out/test/**/*.js"],
+      "outFiles": ["${workspaceFolder}/out/test/**/*.js"],
       "preLaunchTask": "npm: watch"
     }
   ]

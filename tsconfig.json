@@ -7,7 +7,7 @@
 			"es6"
 		],
 		"sourceMap": true,
-		"rootDir": "../../",
+		"rootDir": ".",
 		"resolveJsonModule": true,
 		"strict": true,   /* enable all strict type-checking options */
 		/* Additional Checks */

@@ -18,7 +18,7 @@ export function activate({subscriptions}: vscode.ExtensionContext): void {
     }
   });
 
-  const tipsStatusBarItem = addTipsStatusBarItem();
+  const tipsStatusBarItem: vscode.StatusBarItem = addTipsStatusBarItem();
 
   subscriptions.push(tipsStatusBarItem);
   tipsStatusBarItem.show();

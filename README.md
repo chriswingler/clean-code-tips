@@ -20,9 +20,8 @@
 - Add testing tips
 - Add testing tips enabled / disabled checkbox in settings
 - Gather data from more sources
-- Language translations
 - Add code scanning for more relevant tips
-- Support for other editors
+- Language translations
 
 ## [Github repository](https://github.com/chriswingler/clean-code-tips)
 
