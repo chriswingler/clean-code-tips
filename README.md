@@ -2,11 +2,11 @@
 
 ## What the tips look like!
 
-![Video of clean code tips popping up](src/images/tips.gif 'Tip popups!')
+![Video of clean code tips popping up](images/tips.gif 'Tip popups!')
 
 ## Configurable time between tips!
 
-![Image of dropdown timer configuration](src/images/timerConfig.png 'Configurable time between tips!')
+![Image of dropdown timer configuration](images/timerConfig.png 'Configurable time between tips!')
 
 ## Testimonial
 
