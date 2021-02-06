@@ -2,3 +2,5 @@ vscode-extension/out
 vscode-extension/node_modules
 vscode-extension/.vscode-test/
 vscode-extension/*.vsix
+node_modules
+out
