@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 vscode-extension/out
 vscode-extension/node_modules
 vscode-extension/.vscode-test/
 vscode-extension/*.vsix
 node_modules
 out
+=======
+out
+.vscode-test/
+*.vsix
+node_modules
+>>>>>>> upgrade
