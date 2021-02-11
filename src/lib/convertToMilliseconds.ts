@@ -6,6 +6,7 @@ const convertToMilliseconds = (hours?: number, minutes?: number) => {
 
     return seconds * 1000;
   };
+
   const convertHoursToMinutesToMilliseconds = (hour: number) =>
     convertMinutesToMilliseconds(hour * 60);
 

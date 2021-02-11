@@ -15,7 +15,6 @@ const timer = (): void => {
   // initial tip
   displayTip();
 
-  // Shorthand
   const intervalSetter = (hours: number, minutes: number) => {
     const milliseconds = convertToMilliseconds(hours, minutes);
 
