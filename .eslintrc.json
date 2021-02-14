@@ -1,6 +1,7 @@
 {
   "extends": "./node_modules/gts/",
   "rules": {
-    "node/no-unpublished-import": 1
+    "node/no-unpublished-import": 1,
+    "no-process-exit": 1
   }
 }
