@@ -1,3 +1,4 @@
+// @ts-ignore
 import * as vscode from 'vscode';
 import displayTip from './displayTip';
 import convertToMilliseconds from './convertToMilliseconds';

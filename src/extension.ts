@@ -1,3 +1,4 @@
+// @ts-ignore
 import * as vscode from 'vscode';
 import timer from './lib/timer';
 import addTipsStatusBarItem from './lib/addTipsStatusBarItem';

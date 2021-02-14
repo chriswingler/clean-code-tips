@@ -1,3 +1,4 @@
+// @ts-ignore
 import * as vscode from 'vscode';
 import getCategoryString from './getCategoryString';
 import {PrimaryCategories} from '../types/types';
