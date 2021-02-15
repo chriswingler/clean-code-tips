@@ -2,11 +2,41 @@
 import * as vscode from 'vscode';
 import timer from './lib/timer';
 import addTipsStatusBarItem from './lib/addTipsStatusBarItem';
-import displayTip from './lib/displayTip';
+import displayTip from './lib/displayTestingTip';
 
-export function activate({subscriptions}: vscode.ExtensionContext): void {
+export const activate = async ({
+  subscriptions,
+}: vscode.ExtensionContext): Promise<void> => {
   const config = vscode.workspace.getConfiguration();
-  const {displayTipAtStartup} = config;
+  const {displayTipAtStartup, seenTestingTipReleaseNotice} = config;
+
+  if (!seenTestingTipReleaseNotice) {
+    const noticeMessage = `Clean Code Tips thanks for your support!
+    We've added an option to show tips about unit testing
+    and test driven development.  Would you like to enable
+    these?  If not, you can enable them at any time in the
+    extension preferences.
+    `;
+
+    const selection = await vscode.window.showInformationMessage(
+      noticeMessage,
+      'Yes',
+      'No thanks'
+    );
+
+    selection === 'Yes' &&
+      (await config.update(
+        'displayTestingTips',
+        true,
+        vscode.ConfigurationTarget.Global
+      ));
+
+    await config.update(
+      'seenTestingTipReleaseNotice',
+      true,
+      vscode.ConfigurationTarget.Global
+    );
+  }
 
   if (displayTipAtStartup) {
     timer();
@@ -27,4 +57,4 @@ export function activate({subscriptions}: vscode.ExtensionContext): void {
   subscriptions.push(
     vscode.commands.registerCommand(displayTipCommand, () => displayTip())
   );
-}
+};

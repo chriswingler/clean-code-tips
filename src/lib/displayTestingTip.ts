@@ -1,0 +1,15 @@
+// @ts-ignore
+import * as vscode from 'vscode';
+import getCategoryString from './getCategoryString';
+import {PrimaryCategories} from '../types/types';
+import * as cleanCodeTips from '../../cleancodecheatsheet2.4.json';
+
+const primaryCategories: PrimaryCategories =
+  cleanCodeTips['Clean ATDD/TDD Cheat Sheet'];
+
+const displayTip = (): void => {
+  const outputString = getCategoryString(primaryCategories);
+  vscode.window.showInformationMessage(outputString);
+};
+
+export default displayTip;

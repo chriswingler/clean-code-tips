@@ -46,6 +46,16 @@
             "type": "boolean",
             "default": true,
             "scope": "application"
+          },
+          "displayTestingTips": {
+            "type": "boolean",
+            "default": false,
+            "scope": "application"
+          },
+          "seenTestingTipReleaseNotice": {
+            "type": "boolean",
+            "default": false,
+            "scope": "application"
           }
         }
       }

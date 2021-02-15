@@ -1,8 +1,11 @@
 // @ts-ignore
 import * as vscode from 'vscode';
 import displayTip from './displayTip';
+import displayTestingTip from './displayTestingTip';
 import convertToMilliseconds from './convertToMilliseconds';
 import intervalSwitch from './intervalSwitch';
+
+const {testingTipSelectedInConfig} = vscode.workspace.getConfiguration();
 
 const timer = (): void => {
   let prevIntervalId: NodeJS.Timeout;
@@ -13,8 +16,18 @@ const timer = (): void => {
     return;
   }
 
-  // initial tip
-  displayTip();
+  const displayTipOrTestingTipRandomly = () => {
+    // initial tip
+    const rand = Math.round(Math.random() * 1);
+
+    rand === 0 ? displayTip() : displayTestingTip();
+  };
+
+  if (testingTipSelectedInConfig) {
+    displayTipOrTestingTipRandomly();
+  } else {
+    displayTip();
+  }
 
   const intervalSetter = (hours: number, minutes: number) => {
     const milliseconds = convertToMilliseconds(hours, minutes);
@@ -22,7 +35,11 @@ const timer = (): void => {
     clearInterval(prevIntervalId);
 
     prevIntervalId = setInterval(() => {
-      displayTip();
+      if (testingTipSelectedInConfig) {
+        displayTipOrTestingTipRandomly();
+      } else {
+        displayTip();
+      }
     }, milliseconds);
   };
 
