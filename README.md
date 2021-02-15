@@ -17,8 +17,6 @@
 
 ## Planned features
 
-- Add testing tips
-- Add testing tips enabled / disabled checkbox in settings
 - Gather data from more sources
 - Add code scanning for more relevant tips
 - Language translations
