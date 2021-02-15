@@ -2,13 +2,18 @@
 import * as vscode from 'vscode';
 import timer from './lib/timer';
 import addTipsStatusBarItem from './lib/addTipsStatusBarItem';
-import displayTip from './lib/displayTestingTip';
+import displayTip from './lib/displayTip';
+import displayTipOrTestingTipRandomly from './lib/displayTipOrTestingTipRandomly';
 
 export const activate = async ({
   subscriptions,
 }: vscode.ExtensionContext): Promise<void> => {
   const config = vscode.workspace.getConfiguration();
-  const {displayTipAtStartup, seenTestingTipReleaseNotice} = config;
+  const {
+    displayTipAtStartup,
+    seenTestingTipReleaseNotice,
+    displayTestingTips,
+  } = config;
 
   if (!seenTestingTipReleaseNotice) {
     const noticeMessage = `Clean Code Tips thanks for your support!
@@ -55,6 +60,12 @@ export const activate = async ({
 
   const displayTipCommand = 'displayTip';
   subscriptions.push(
-    vscode.commands.registerCommand(displayTipCommand, () => displayTip())
+    vscode.commands.registerCommand(displayTipCommand, () => {
+      if (displayTestingTips) {
+        displayTipOrTestingTipRandomly();
+      } else {
+        displayTip();
+      }
+    })
   );
 };
