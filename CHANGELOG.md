@@ -1,5 +1,7 @@
 # Change Log
 
+2.0.0 added testing tips
+
 1.7.0 fix status bar item not displaying tip issue
 
 1.6.0 add Display Tip At Startup configuration option

@@ -3,9 +3,9 @@
   "displayName": "Clean Code Tips",
   "description": "Displays a clean code tip each time you open VSCode to help us all become better engineers!",
   "publisher": "chriswingler",
-  "version": "1.7.0",
+  "version": "2.0.0",
   "engines": {
-    "vscode": "^1.39.0"
+    "vscode": "^1.53.0"
   },
   "categories": [
     "Other"
